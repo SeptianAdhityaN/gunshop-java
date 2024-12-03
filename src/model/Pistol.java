@@ -1,3 +1,4 @@
+package src.model;
 public class Pistol extends Weapon {
     private double caliber;
 

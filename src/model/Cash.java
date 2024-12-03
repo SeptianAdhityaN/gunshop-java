@@ -1,3 +1,4 @@
+package src.model;
 public class Cash implements PaymentMethod {
     private double balance;
 

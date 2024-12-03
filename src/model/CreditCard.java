@@ -1,3 +1,4 @@
+package src.model;
 public class CreditCard implements PaymentMethod {
     private String cardNumber;
     private double creditLimit;

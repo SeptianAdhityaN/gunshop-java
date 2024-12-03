@@ -1,11 +1,20 @@
 import java.util.Scanner;
 
+import src.model.Cash;
+import src.model.CreditCard;
+import src.model.Customer;
+import src.model.PaymentMethod;
+import src.model.Pistol;
+import src.model.Rifle;
+import src.model.Store;
+import src.model.Weapon;
+
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("+-----------------------------------------------------------------------------------------------+");
-        System.out.println("|                                      SECRET ASEP'S GUNSHOP                                    |");
+        System.out.println("|                                          NWORD GUNSHOP                                        |");
         System.out.println("+-----------------------------------------------------------------------------------------------+");
 
         // Pilih metode pembayaran
