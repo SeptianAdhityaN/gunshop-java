@@ -1,4 +1,6 @@
-package src.model;
+package model;
+
+@Deprecated
 public class Cash implements PaymentMethod {
     private double balance;
 

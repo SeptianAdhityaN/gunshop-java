@@ -1,22 +1,18 @@
-import java.util.Scanner;
+package view;
 
-import src.model.Cash;
-import src.model.CreditCard;
-import src.model.Customer;
-import src.model.PaymentMethod;
-import src.model.Pistol;
-import src.model.Rifle;
-import src.model.Store;
-import src.model.Weapon;
+import controller.CustomerController;
+import controller.WeaponController;
+import model.*;
+// import java.util.ArrayList;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("+-----------------------------------------------------------------------------------------------+");
-        System.out.println("|                                          NWORD GUNSHOP                                        |");
-        System.out.println("+-----------------------------------------------------------------------------------------------+");
-
+        WeaponView weaponView = new WeaponView();
+        WeaponController weaponController = new WeaponController();
+        CustomerView customerView = new CustomerView();
+        
         // Pilih metode pembayaran
         System.out.println("Pilih Metode Pembayaran: ");
         System.out.println("1. Tunai | 2. Kartu Kredit");
@@ -35,47 +31,36 @@ public class App {
             paymentMethod = new CreditCard(cardNumber, creditLimit);
         }
 
-        Store store = new Store();
-        store.addWeapon(new Pistol("Glock 17", 500.0, 10, 9.0));
-        store.addWeapon(new Pistol("Desert Eagle", 1200.0, 7, 12.0));
-        store.addWeapon(new Rifle("AK-47", 1500.0, 5, 800));
-        store.addWeapon(new Rifle("M16", 1700.0, 3, 900));
-        
-        Customer customer = new Customer("Asep", paymentMethod);
+        // Initialize senjata
+        weaponController.addWeapon(new Pistol("Glock 17", 500.0, 10, 9.0));
+        weaponController.addWeapon(new Pistol("Desert Eagle", 1200.0, 7, 12.0));
+        weaponController.addWeapon(new Rifle("AK-47", 1500.0, 5, 800));
+        weaponController.addWeapon(new Rifle("M16", 1700.0, 3, 900));
 
+        CustomerController customerController = new CustomerController(paymentMethod);
+
+        // Menu
         boolean buying = true;
         while (buying) {
-            System.out.println();
-            System.out.println("Cecep: Halo, " + customer.getName() + "! Apakah senjata mana yang ingin kamu beli?");
-            store.tampilkanStock();
-            System.out.println("| Masukkan nomor senjata yang ingin dibeli (0 untuk selesai): ");
-            System.out.println("+-------------------------------------------------------------------------------------------+");
+            weaponView.displayStock(weaponController.getStockList());
+            System.out.println("Masukkan nomor senjata yang ingin dibeli (0 untuk selesai): ");
             int choice = scanner.nextInt();
-            
+
             if (choice == 0) {
                 buying = false;
+            } else if (choice > 0 && choice <= weaponController.getStockList().size()) {
+                Weapon selectedWeapon = weaponController.selectWeapon(choice - 1);
+                customerController.buyWeapon(selectedWeapon);
             } else {
-                Weapon selectedWeapon = store.selectWeapon(choice - 1);
-                if (selectedWeapon != null) {
-                    customer.buyWeapon(selectedWeapon);
-                } else {
-                    System.out.println("+-----------------------------------------------+");
-                    System.out.println("| Pilihan tidak tersedia! ");
-                    System.out.println("+-----------------------------------------------+");
-                }
+                System.out.println("Pilihan tidak valid!");
             }
         }
 
-        // Terapkan diskon jika total pembelian melebihi $1000
-        customer.displayPurchasedWeapons();
-        customer.applyDiscount();
-        customer.displayTotalPurchase();
-        scanner.close();
-
-        System.out.println("Hi " + customer.getName() + ", Senang berbisnis dengan anda! ");
+        // Display summary
         
-        System.out.println("+--------------------------------------------------------------------------------------------+");
-        System.out.println("|                          Created by: Asep  a.k.a Septian Adhitya N.                        |");
-        System.out.println("+--------------------------------------------------------------------------------------------+");
+        customerView.displayPurchasedWeapons(customerController.getPurchasedWeapons());
+        customerView.displayTotalPurchase(customerController.getTotalSpent());
+
+        scanner.close();
     }
 }

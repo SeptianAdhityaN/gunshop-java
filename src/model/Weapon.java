@@ -1,4 +1,5 @@
-package src.model;
+package model;
+
 public abstract class Weapon {
     private String name;
     private double price;
