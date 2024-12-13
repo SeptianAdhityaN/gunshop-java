@@ -1,6 +1,5 @@
 package model;
 
-@Deprecated
 public class Pistol extends Weapon {
     private double caliber;
 

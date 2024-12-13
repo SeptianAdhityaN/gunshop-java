@@ -3,7 +3,6 @@ package view;
 import controller.CustomerController;
 import controller.WeaponController;
 import model.*;
-// import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -13,7 +12,10 @@ public class App {
         WeaponController weaponController = new WeaponController();
         CustomerView customerView = new CustomerView();
         
-        // Pilih metode pembayaran
+        System.out.println("+================================================================================================+");
+        System.out.println("|                                         Asep Gunshop                                           |");
+        System.out.println("+================================================================================================+");
+
         System.out.println("Pilih Metode Pembayaran: ");
         System.out.println("1. Tunai | 2. Kartu Kredit");
         int paymentChoice = scanner.nextInt();
@@ -22,7 +24,11 @@ public class App {
         if (paymentChoice == 1) {
             System.out.print("Masukkan uang anda: ");
             double cashBalance = scanner.nextDouble();
-            paymentMethod = new Cash(cashBalance);
+            
+            /* !!! Mengganti class Cash menjadi UpdatedCash !!! */
+
+            // paymentMethod = new Cash(cashBalance);
+            paymentMethod = new UpdatedCash(cashBalance);
         } else {
             System.out.print("Masukkan nomor kartu kredit: ");
             String cardNumber = scanner.next();
@@ -31,7 +37,6 @@ public class App {
             paymentMethod = new CreditCard(cardNumber, creditLimit);
         }
 
-        // Initialize senjata
         weaponController.addWeapon(new Pistol("Glock 17", 500.0, 10, 9.0));
         weaponController.addWeapon(new Pistol("Desert Eagle", 1200.0, 7, 12.0));
         weaponController.addWeapon(new Rifle("AK-47", 1500.0, 5, 800));
@@ -39,7 +44,6 @@ public class App {
 
         CustomerController customerController = new CustomerController(paymentMethod);
 
-        // Menu
         boolean buying = true;
         while (buying) {
             weaponView.displayStock(weaponController.getStockList());
@@ -56,11 +60,12 @@ public class App {
             }
         }
 
-        // Display summary
-        
         customerView.displayPurchasedWeapons(customerController.getPurchasedWeapons());
         customerView.displayTotalPurchase(customerController.getTotalSpent());
 
         scanner.close();
+        System.out.println("+================================================================================================+");
+        System.out.println("|                           created by: Septian Adhitya Nugroho aka. Asep                        |");
+        System.out.println("+================================================================================================+");
     }
 }

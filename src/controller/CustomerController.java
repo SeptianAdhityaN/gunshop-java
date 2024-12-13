@@ -35,12 +35,10 @@ public class CustomerController {
         }
     }
 
-    // Menyediakan akses untuk daftar senjata yang dibeli
     public ArrayList<Weapon> getPurchasedWeapons() {
         return purchasedWeapons;
     }
 
-    // Menyediakan akses untuk total pengeluaran
     public double getTotalSpent() {
         return totalSpent;
     }

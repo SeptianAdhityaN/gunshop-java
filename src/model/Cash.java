@@ -1,6 +1,10 @@
 package model;
 
-@Deprecated
+@Deprecated 
+
+/* class Cash sudah tidak digunakan, 
+silahkan hapus class ini dan ganti dengan class UpdatedCash */
+
 public class Cash implements PaymentMethod {
     private double balance;
 
