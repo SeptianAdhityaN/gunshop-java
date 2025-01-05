@@ -65,7 +65,13 @@ public class App {
 
         scanner.close();
         System.out.println("+================================================================================================+");
-        System.out.println("|                           created by: Septian Adhitya Nugroho aka. Asep                        |");
+        System.out.println("|                                       created by Kelompok 2:                                   |");
+        System.out.println("|                              Imanuel Endxander P.      (23051204223)                           |");
+        System.out.println("|                              Moch Arief Kresnanda      (23051204226)                           |");
+        System.out.println("|                              Daffa Faruq N. A          (23051204241)                           |");
+        System.out.println("|                              Septian Adhitya Nugroho   (23051204242)                           |");
+        System.out.println("|                              Rizky Amalia              (23051204248)                           |");
+        System.out.println("|                              Sekunda Yudha P.          (23051204394)                           |");
         System.out.println("+================================================================================================+");
     }
 }
